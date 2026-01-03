@@ -1,4 +1,4 @@
-import type { Product } from "./type"
+import type { Category, Product } from "./type"
 
 export const products: Product[] = [
   {
@@ -66,3 +66,7 @@ export const products: Product[] = [
     rating: { rate: 4.5, count: 78 },
   },
 ]
+
+
+export const CATEGORIES: (Category | "All")[] = ["All", "Shoes", "Shirts", "Electronics", "Accessories"]
+

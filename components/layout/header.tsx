@@ -3,8 +3,13 @@
 import Link from "next/link"
 import { ShoppingBag, Search, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useAppSelector } from "@/lib/redux/hooks"
+import { selectItemCount } from "@/lib/redux/slice/selectors"
 
 export function Header() {
+
+  const cartCount = useAppSelector(selectItemCount)
+
  
   return (
     <header
@@ -16,38 +21,19 @@ export function Header() {
             <Link href="/" className="text-xl font-bold tracking-tight">
               WEGE.
             </Link>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                Shop
-              </Link>
-              <Link
-                href="/categories"
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                Categories
-              </Link>
-              <Link
-                href="/about"
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                About
-              </Link>
-            </nav>
           </div>
 
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Link href="/cart">
-              <Button variant="ghost" size="icon" className="relative">
+           <Link href="/cart">
+           <Button variant="ghost" size="icon" className="relative">
                 <ShoppingBag className="h-5 w-5" />
-                
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
+                    {cartCount}
+                  </span>
+                )}
               </Button>
-            </Link>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
+              </Link>
           </div>
         </div>
       </div>

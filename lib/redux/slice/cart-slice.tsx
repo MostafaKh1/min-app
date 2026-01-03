@@ -5,9 +5,24 @@ interface CartState {
   items: CartItem[]
 }
 
-const initialState: CartState = {
-  items: localStorage.getItem("cart_storage") ? JSON.parse(localStorage.getItem("cart_storage") || "[]") : [],
+
+
+const getInitialState = (): CartState => {
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem("cart_storage")
+    if (stored) {
+      try {
+        return { items: JSON.parse(stored) }
+      } catch {
+        return { items: [] }
+      }
+    }
+  }
+  return { items: [] }
 }
+
+
+const initialState: CartState = getInitialState()
 
 const saveToStorage = (items: CartItem[]) => {
   if (typeof window !== "undefined") {

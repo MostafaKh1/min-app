@@ -1,8 +1,6 @@
-import { Suspense } from "react"
 import { notFound } from "next/navigation"
 import { products } from "@/lib/data"
 import { ProductInfo } from "@/components/product/product-info"
-import { Skeleton } from "@/components/ui/skeleton"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { ProductGallery } from "@/components/product/product-gallery"

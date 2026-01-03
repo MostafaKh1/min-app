@@ -5,12 +5,17 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Plus, Star } from "lucide-react"
 import { Product } from "@/lib/type"
+import { useAppDispatch } from "@/lib/redux/hooks"
+import { addItem } from "@/lib/redux/slice/cart-slice"
 
 interface ProductCardProps {
   product: Product
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+
+  const dispatch = useAppDispatch()
+
 
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
@@ -49,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="h-8 w-8 rounded-full p-0"
             onClick={(e) => {
               e.preventDefault()
-              
+              dispatch(addItem(product))
             }}
           >
             <Plus className="h-4 w-4" />

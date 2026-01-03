@@ -1,45 +1,24 @@
 "use client"
 
-import type { Category } from "@/lib/type"
-import { useRouter, useSearchParams } from "next/navigation"
-import { useTransition } from "react"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Slider } from "@/components/ui/slider"
 import { Search } from "lucide-react"
 import { CATEGORIES } from "@/lib/data"
-
+import { useProductFilters } from "./hooks/use-product-filters"
 
 export function FilterProduct() {
-
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [isPending, startTransition] = useTransition()
-
-  const currentCategory = searchParams.get("category") || "All"
-  const currentQuery = searchParams.get("query") || ""
-  const minPrice = Number(searchParams.get("minPrice")) || 0
-  const maxPrice = Number(searchParams.get("maxPrice")) || 500
-
-  const updateFilters = (updates: Record<string, string | number | null>) => {
-    const params = new URLSearchParams(searchParams.toString())
-
-    Object.entries(updates).forEach(([key, value]) => {
-      if (value === null || value === "All" || value === "") {
-        params.delete(key)
-      } else {
-        params.set(key, String(value))
-      }
-    })
-
-    startTransition(() => {
-      router.push(`/?${params.toString()}`, { scroll: false })
-    })
-  }
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateFilters({ query: e.target.value })
-  }
+  const {
+    currentCategory,
+    searchValue,
+    minPrice,
+    maxPrice,
+    isPending,
+    handleSearch,
+    updateFilters,
+    clearFilters,
+  } = useProductFilters()
 
   return (
     <div className="space-y-8 sticky top-24">
@@ -50,7 +29,7 @@ export function FilterProduct() {
           <Input
             placeholder="Search products..."
             className="pl-9"
-            value={currentQuery}
+            value={searchValue}
             onChange={handleSearch}
           />
         </div>
@@ -89,7 +68,7 @@ export function FilterProduct() {
         />
       </div>
 
-      <Button variant="outline" className="w-full bg-transparent" onClick={() => router.push("/")} disabled={isPending}>
+      <Button variant="outline" className="w-full bg-transparent" onClick={clearFilters} disabled={isPending}>
         Clear All Filters
       </Button>
     </div>

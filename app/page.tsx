@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import ProductGrid from "@/components/product/product-grid"
 import FilterProduct from "@/components/product/filter-product"
 import { Skeleton } from "@/components/ui/skeleton"
+import { FilterSkeleton, GridSkeleton } from "./loading"
 
 export default async function HomePage({
   searchParams,
@@ -35,4 +36,5 @@ export default async function HomePage({
     </div>
   )
 }
+
 

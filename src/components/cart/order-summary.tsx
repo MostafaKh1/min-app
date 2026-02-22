@@ -1,12 +1,12 @@
-"use client"
+'use client';
 
-import { useAppSelector } from "@/lib/redux/hooks"
-import { selectTotalPrice } from "@/lib/redux/slice/selectors"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { useAppSelector } from '@/lib/redux/hooks';
+import { selectTotalPrice } from '@/lib/redux/slice/selectors';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
 export function OrderSummary() {
-  const totalPrice = useAppSelector(selectTotalPrice)
+  const totalPrice = useAppSelector(selectTotalPrice);
 
   return (
     <div className="bg-muted/30 rounded-2xl p-8 sticky top-24">
@@ -36,8 +36,9 @@ export function OrderSummary() {
       </Button>
 
       <p className="mt-6 text-center text-xs text-muted-foreground">
-        By proceeding to checkout, you agree to our Terms of Service and Privacy Policy.
+        By proceeding to checkout, you agree to our Terms of Service and Privacy
+        Policy.
       </p>
     </div>
-  )
+  );
 }

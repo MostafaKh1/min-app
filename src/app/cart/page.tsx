@@ -1,16 +1,16 @@
-"use client"
+'use client';
 
-import { useAppSelector } from "@/lib/redux/hooks"
-import { selectCartItems } from "@/lib/redux/slice/selectors"
-import { EmptyCart } from "@/components/cart/empty-cart"
-import { CartList } from "@/components/cart/cart-list"
-import { OrderSummary } from "@/components/cart/order-summary"
+import { useAppSelector } from '@/lib/redux/hooks';
+import { selectCartItems } from '@/lib/redux/slice/selectors';
+import { EmptyCart } from '@/components/cart/empty-cart';
+import { CartList } from '@/components/cart/cart-list';
+import { OrderSummary } from '@/components/cart/order-summary';
 
 export default function CartPage() {
-  const items = useAppSelector(selectCartItems)
+  const items = useAppSelector(selectCartItems);
 
   if (items.length === 0) {
-    return <EmptyCart />
+    return <EmptyCart />;
   }
 
   return (
@@ -27,5 +27,5 @@ export default function CartPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

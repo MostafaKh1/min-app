@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
-import { Button } from "@/components/ui/button"
-import { ShoppingBag } from "lucide-react"
-import Link from "next/link"
+import { Button } from '@/components/ui/button';
+import { ShoppingBag } from 'lucide-react';
+import Link from 'next/link';
 
 export function EmptyCart() {
   return (
@@ -12,12 +12,12 @@ export function EmptyCart() {
       </div>
       <h1 className="text-3xl font-bold mb-4">Your bag is empty</h1>
       <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-        It looks like you haven&apos;t added anything to your bag yet. Explore our latest collection to find something you
-        love.
+        It looks like you haven&apos;t added anything to your bag yet. Explore
+        our latest collection to find something you love.
       </p>
       <Button asChild size="lg">
         <Link href="/">Continue Shopping</Link>
       </Button>
     </div>
-  )
+  );
 }

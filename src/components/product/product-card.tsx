@@ -1,27 +1,28 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Plus, Star } from "lucide-react"
-import { Product } from "@/lib/type"
-import { useAppDispatch } from "@/lib/redux/hooks"
-import { addItem } from "@/lib/redux/slice/cart-slice"
+import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Plus, Star } from 'lucide-react';
+import { Product } from '@/lib/type';
+import { useAppDispatch } from '@/lib/redux/hooks';
+import { addItem } from '@/lib/redux/slice/cart-slice';
 
 interface ProductCardProps {
-  product: Product
+  product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-
-  const dispatch = useAppDispatch()
-
+  const dispatch = useAppDispatch();
 
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
-      <Link href={`/products/${product.id}`} className="relative aspect-square overflow-hidden bg-muted">
+      <Link
+        href={`/products/${product.id}`}
+        className="relative aspect-square overflow-hidden bg-muted"
+      >
         <Image
-          src={product.image || "/placeholder.svg"}
+          src={product.image || '/placeholder.svg'}
           alt={product.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -37,14 +38,20 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mb-2 flex items-center gap-1">
           <Star className="h-3 w-3 fill-primary text-primary" />
           <span className="text-xs font-medium">{product.rating.rate}</span>
-          <span className="text-[10px] text-muted-foreground">({product.rating.count})</span>
+          <span className="text-[10px] text-muted-foreground">
+            ({product.rating.count})
+          </span>
         </div>
 
         <Link href={`/products/${product.id}`} className="mb-1">
-          <h3 className="line-clamp-1 text-sm font-semibold hover:text-primary transition-colors">{product.title}</h3>
+          <h3 className="line-clamp-1 text-sm font-semibold hover:text-primary transition-colors">
+            {product.title}
+          </h3>
         </Link>
 
-        <p className="line-clamp-2 text-xs text-muted-foreground flex-1 mb-4">{product.description}</p>
+        <p className="line-clamp-2 text-xs text-muted-foreground flex-1 mb-4">
+          {product.description}
+        </p>
 
         <div className="flex items-center justify-between mt-auto">
           <span className="text-sm font-bold">${product.price}</span>
@@ -53,8 +60,8 @@ export function ProductCard({ product }: ProductCardProps) {
             variant="secondary"
             className="h-8 w-8 rounded-full p-0"
             onClick={(e) => {
-              e.preventDefault()
-              dispatch(addItem(product))
+              e.preventDefault();
+              dispatch(addItem(product));
             }}
           >
             <Plus className="h-4 w-4" />
@@ -63,5 +70,5 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

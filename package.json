@@ -81,9 +81,9 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
+   "src/**/*.{ts,tsx,js,jsx}": [
+      "npm run lint",
+      "npm run format"
     ]
   }
 }

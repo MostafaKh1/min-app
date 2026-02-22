@@ -15,7 +15,7 @@ export default async function HomePage({
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight">New Arrivals</h1>
-          <p className="text-muted-foreground">Explore our latest collection of premium essentials.</p>
+          <p className="text-muted-foreground">Explore our latest collection of premium essentials..</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
